@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import styled, { css } from 'styled-components'
+import { shuffle } from 'lodash'
 
 const init_words = [
 	'here',
@@ -65,11 +66,13 @@ const initData = [
 	}
 ]
 
-const selectData = {
-	past: ['was', 'were'],
-	main: ['am', 'is', 'are'],
-	future: ['will be']
-}
+const selectData = ['was','is','will be','am','are','were']
+
+// const selectData = {
+// 	past: ['was', 'were'],
+// 	main: ['am', 'is', 'are'],
+// 	future: ['will be']
+// }
 
 const title = {
 	past: 'Прошедшее',
@@ -77,7 +80,7 @@ const title = {
 	future: 'Будующее'
 }
 
-export const Item = ({ time }) => {
+export const BeItem = ({ time }) => {
 	const [sectionValue, setSectionValue] = useState('')
 
 	const [rndSection] = useState(initData[getRandom(initData)])
@@ -91,7 +94,7 @@ export const Item = ({ time }) => {
 		<View>
 			<ItemTitle>{title[time]}</ItemTitle>
 			<ItemContent isError={isError} isChanged={sectionValue !== ""}>
-				{rndName}{' '}{renderSelect(selectData[time])}{' '}{middleWord}{' '}
+				{rndName}{' '}{renderSelect(shuffle(selectData))}{' '}{middleWord}{' '}
 				{endWord}
 			</ItemContent>
 		</View>

@@ -1,31 +1,44 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
-import { Item } from './Item'
+import { BeItem } from './BeItem'
+import { HaveItem } from './HaveItem'
 export const App = () => {
   const times = ['past', 'main', 'future']
-
 
   return (
     <View>
       <Title>Учу Инглиш</Title>
       <SubTitle>To Be</SubTitle>
       <Content>
-          <Column>
-
-          {Array.from({length: 10}, (_, i) => i + 1).map((_,index)=><Item key={String(index)} time={times[getRandom(times)]} />)}
-          </Column>
-          <Column>
-
-          {Array.from({length: 10}, (_, i) => i + 1).map((_,index)=><Item key={String(index)} time={times[getRandom(times)]} />)}
-          </Column>
+        <Column>
+          {Array.from({ length: 10 }, (_, i) => i + 1).map((_, index) => (
+            <BeItem key={String(index)} time={times[getRandom(times)]} />
+          ))}
+        </Column>
+        <Column>
+          {Array.from({ length: 10 }, (_, i) => i + 1).map((_, index) => (
+            <BeItem key={String(index)} time={times[getRandom(times)]} />
+          ))}
+        </Column>
+      </Content>
+      <SubTitle>To Have</SubTitle>
+      <Content>
+        <Column>
+          {Array.from({ length: 10 }, (_, i) => i + 1).map((_, index) => (
+            <HaveItem key={String(index)} time={times[getRandom(times)]} />
+          ))}
+        </Column>
+        <Column>
+          {Array.from({ length: 10 }, (_, i) => i + 1).map((_, index) => (
+            <HaveItem key={String(index)} time={times[getRandom(times)]} />
+          ))}
+        </Column>
       </Content>
     </View>
   )
 
   function getRandom(arr) {
-    const random = Math.floor(Math.random() * arr.length)
-
-    return random
+    return Math.floor(Math.random() * arr.length)
   }
 }
 
